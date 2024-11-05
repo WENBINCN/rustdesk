@@ -101,7 +101,7 @@ const CHARS: &[char] = &[
 ];
 
 pub const RENDEZVOUS_SERVERS: &[&str] = &["zz.xinbin.fun"];
-pub const PUBLIC_RS_PUB_KEY: &str = "SMBV82ZLQ78LFXgzmsRx7XpJZGlopQaErvTmPwdO94Q=";
+pub const PUBLIC_RS_PUB_KEY: &str = "123123123123123123123=";
 
 pub const RS_PUB_KEY: &str = match option_env!("RS_PUB_KEY") {
     Some(key) if !key.is_empty() => key,
