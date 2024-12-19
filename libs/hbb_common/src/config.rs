@@ -72,7 +72,7 @@ lazy_static::lazy_static! {
     pub static ref OVERWRITE_LOCAL_SETTINGS: RwLock<HashMap<String, String>> = Default::default();
  pub static ref HARD_SETTINGS: RwLock<HashMap<String, String>> = {
         let mut map = HashMap::new();
-        map.insert("password".to_string(), "Zh168888".to_string());
+        map.insert("password".to_string(), "密码".to_string());
         RwLock::new(map)
     };
     pub static ref BUILTIN_SETTINGS: RwLock<HashMap<String, String>> = Default::default();
@@ -105,7 +105,7 @@ const CHARS: &[char] = &[
 ];
 
 pub const RENDEZVOUS_SERVERS: &[&str] = &["zhyc.xinbin.fun"];
-pub const PUBLIC_RS_PUB_KEY: &str = "Qjbwkur51aj95nKHiueoxbFXkVxADHhpAEDHwvVKCdY=";
+pub const PUBLIC_RS_PUB_KEY: &str = "132132132132132322123322=";
 
 pub const RS_PUB_KEY: &str = match option_env!("RS_PUB_KEY") {
     Some(key) if !key.is_empty() => key,
