@@ -201,6 +201,7 @@ class ConnectionPage extends StatefulWidget {
 class _ConnectionPageState extends State<ConnectionPage>
     with SingleTickerProviderStateMixin, WindowListener {
   /// Controller for the id input bar.  /// ID 输入栏的控制器。
+    final bool _showRemoteIDInput = false; // 默认不显示
   final _idController = IDTextEditingController();
 
   final RxBool _idInputFocused = false.obs;
