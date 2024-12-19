@@ -277,29 +277,30 @@ class _ConnectionPageState extends State<ConnectionPage>
     bind.mainOnMainWindowClose();
   }
 
-  @override
-  Widget build(BuildContext context) {
-    final isOutgoingOnly = bind.isOutgoingOnly();
-    return Column(
-      children: [
-        Expanded(
-            child: Column(
+ @override
+Widget build(BuildContext context) {
+  final isOutgoingOnly = bind.isOutgoingOnly();
+  return Column(
+    children: [
+      Expanded(
+        child: Column(
           children: [
-            Row(
-              children: [
-                Flexible(child: _buildRemoteIDTextField(context)),
-              ],
-            ).marginOnly(top: 22),
-            SizedBox(height: 12),
-            Divider().paddingOnly(right: 12),
+            if (_showRemoteIDInput) // 条件渲染远程ID输入栏
+              Row(
+                children: [
+                  Flexible(child: _buildRemoteIDTextField(context)),
+                ],
+              ).marginOnly(top: 22),
+            if (_showRemoteIDInput) SizedBox(height: 12),
+            if (_showRemoteIDInput) Divider().paddingOnly(right: 12),
             Expanded(child: PeerTabPage()),
           ],
         ).paddingOnly(left: 12.0)),
-        if (!isOutgoingOnly) const Divider(height: 1),
-        if (!isOutgoingOnly) OnlineStatusWidget()
-      ],
-    );
-  }
+      if (!isOutgoingOnly) const Divider(height: 1),
+      if (!isOutgoingOnly) OnlineStatusWidget()
+    ],
+  );
+}
 
   /// Callback for the connect button.  /// 连接按钮的回调。
   /// Connects to the selected peer.  /// 连接到选定的对等点。
