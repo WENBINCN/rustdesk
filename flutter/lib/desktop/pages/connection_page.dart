@@ -1,4 +1,5 @@
 // main window right pane
+// 主窗口右窗格
 
 import 'dart:async';
 import 'dart:convert';
@@ -30,6 +31,7 @@ class OnlineStatusWidget extends StatefulWidget {
 }
 
 /// State for the connection page.
+/// 连接页面的状态。
 class _OnlineStatusWidgetState extends State<OnlineStatusWidget> {
   final _svcStopped = Get.find<RxBool>(tag: 'stop-service');
   final _svcIsUsingPublicServer = true.obs;
@@ -131,6 +133,7 @@ class _OnlineStatusWidgetState extends State<OnlineStatusWidget> {
             if (!isIncomingOnly) startServiceWidget(),
             // ready && public
             // No need to show the guide if is custom client.
+                        // 如果是自定义客户端，则无需显示指南。
             if (!isIncomingOnly) setupServerWidget(),
           ],
         );
@@ -186,6 +189,7 @@ class _OnlineStatusWidgetState extends State<OnlineStatusWidget> {
 }
 
 /// Connection page for connecting to a remote peer.
+/// 用于连接远程对等设备的连接页面。
 class ConnectionPage extends StatefulWidget {
   const ConnectionPage({Key? key}) : super(key: key);
 
@@ -193,10 +197,10 @@ class ConnectionPage extends StatefulWidget {
   State<ConnectionPage> createState() => _ConnectionPageState();
 }
 
-/// State for the connection page.
+/// State for the connection page./// 连接页面的状态。
 class _ConnectionPageState extends State<ConnectionPage>
     with SingleTickerProviderStateMixin, WindowListener {
-  /// Controller for the id input bar.
+  /// Controller for the id input bar.  /// ID 输入栏的控制器。
   final _idController = IDTextEditingController();
 
   final RxBool _idInputFocused = false.obs;
@@ -246,7 +250,7 @@ class _ConnectionPageState extends State<ConnectionPage>
       isWindowMinimized = true;
     } else if (eventName == 'maximize' || eventName == 'restore') {
       if (isWindowMinimized && isWindows) {
-        // windows can't update when minimized.
+        // windows can't update when minimized.        // 窗口最小化时无法更新。
         Get.forceAppUpdate();
       }
       isWindowMinimized = false;
@@ -255,13 +259,13 @@ class _ConnectionPageState extends State<ConnectionPage>
 
   @override
   void onWindowEnterFullScreen() {
-    // Remove edge border by setting the value to zero.
+    // Remove edge border by setting the value to zero.    // 将值设为零，删除边缘边界。
     stateGlobal.resizeEdgeSize.value = 0;
   }
 
   @override
   void onWindowLeaveFullScreen() {
-    // Restore edge border to default edge size.
+    // Restore edge border to default edge size.    // 将边缘边框恢复为默认边缘尺寸。
     stateGlobal.resizeEdgeSize.value = stateGlobal.isMaximized.isTrue
         ? kMaximizeEdgeSize
         : windowResizeEdgeSize;
@@ -297,8 +301,8 @@ class _ConnectionPageState extends State<ConnectionPage>
     );
   }
 
-  /// Callback for the connect button.
-  /// Connects to the selected peer.
+  /// Callback for the connect button.  /// 连接按钮的回调。
+  /// Connects to the selected peer.  /// 连接到选定的对等点。
   void onConnect({bool isFileTransfer = false}) {
     var id = _idController.id;
     connect(context, id, isFileTransfer: isFileTransfer);
@@ -316,8 +320,8 @@ class _ConnectionPageState extends State<ConnectionPage>
     });
   }
 
-  /// UI for the remote ID TextField.
-  /// Search for a peer.
+  /// UI for the remote ID TextField.  /// 远程 ID 文本字段的用户界面。
+  /// Search for a peer.  /// Search for a peer.
   Widget _buildRemoteIDTextField(BuildContext context) {
     var w = Container(
       width: 320 + 20 * 2,
